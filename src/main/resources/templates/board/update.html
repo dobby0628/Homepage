@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
+  <body class="is-preload">
+  <th:block th:fragment="content">
+    <!-- Main -->
+    <div id="main">
+      <div class="inner">
+        <header>
+          <h1>Board</h1>
+        </header>
+        <section>
+          <h2>Post</h2>
+          <form method="post" action="update">
+            <div class="row gtr-uniform">
+              <input type="hidden" name="bno" th:value="${post.bno}">
+              <div class="col-9 col-12-xsmall">
+                <input type="text" name="btitle" id="btitle" th:value="${post.btitle}">
+              </div>
+              <div class="col-3 col-12-xsmall">
+                <input type="text" name="bwriter" id="bwriter" th:value="${post.bwriter}" text="" />
+              </div>
+              <div class="col-12">
+                <textarea name="bcontent" id="bcontent" rows="6">[[${post.bcontent}]]</textarea>
+              </div>
+              <div class="col-12">
+                <ul class="actions" style="float: right;">
+                  <li><input type="submit" value="Update" class="primary" /></li>
+                  <li><input type="reset" value="Reset" /></li>
+                </ul>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </th:block>
+  </body>
+</th:block>
+</html>

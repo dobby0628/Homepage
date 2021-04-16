@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
+	<body class="is-preload">
+		<th:block th:fragment="content">
+			<!-- Main -->
+			<div id="main">
+				<div class="inner">
+					<header>
+						<h1>Board</h1>
+					</header>
+
+					<section>
+						<h2>Form</h2>
+						<form method="post" action="#">
+							<div class="row gtr-uniform">
+								<div class="col-9 col-12-xsmall">
+									<input type="text" name="title" id="title" value="" placeholder="Title" />
+								</div>
+								<div class="col-3 col-12-xsmall">
+									<input type="text" name="writer" id="writer" value="" placeholder="Writer" />
+								</div>
+								<div class="col-12">
+									<textarea name="content" id="content" placeholder="Enter your message" rows="6"></textarea>
+								</div>
+								<div class="col-12">
+									<ul class="actions" style="float: right;">
+										<li><input type="submit" value="Write" class="primary" /></li>
+										<li><input type="reset" value="Reset" /></li>
+									</ul>
+								</div>
+							</div>
+						</form>
+					</section>
+
+				</div>
+			</div>
+		</th:block>
+	</body>
+</th:block>
+</html>

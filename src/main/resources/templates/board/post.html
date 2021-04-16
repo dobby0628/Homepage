@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
+    <body class="is-preload">
+    <th:block th:fragment="content">
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+                <header>
+                    <h1>Board</h1>
+                </header>
+                <section>
+                    <h2>[[${{post.btitle}}]]</h2>
+                    <br>
+                    <h3>Writer</h3> <p>[[${post.bwriter}]]</p>
+                    <br>
+                    <h3>CreateTime</h3> <p>[[${post.regdate}]]</p>
+                    <br>
+                    <h3>수정한 날짜</h3> <p>[[${post.moddate}]]</p>
+                    <br>
+                    <h3>조회수</h3> <p>[[${post.bviewcnt}]]</p>
+                    <br>
+                    <blockquote>[[${post.bcontent}]]</blockquote>
+
+                    <br>
+                    <ul class="actions" style="float: right;">
+                        <li><a th:href="@{/board/update(bno=${post.bno})}" class="button primary" />Update</a></li>
+                        <li><a th:href="@{/board/delete(bno=${post.bno})}" class="button primary" />Delete</a></li>
+                    </ul>
+
+                </section>
+            </div>
+        </div>
+    </th:block>
+    </body>
+</th:block>
+</html>

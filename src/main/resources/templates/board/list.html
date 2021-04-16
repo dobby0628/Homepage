@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
+    <body class="is-preload">
+    <th:block th:fragment="content">
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+                <header>
+                    <h1>Board</h1>
+                    <p>please write about your story</p>
+                </header>
+                <section class="tiles">
+                    <th:block th:if="${lists}">
+                        <th:block th:each="list : ${lists}">
+                            <article class="style1">
+                                <span class="image">
+                                    <img th:src="|/images/pic0${list.bno}.jpg|" alt="" />
+                                </span>
+                                <a th:href="@{/board/post(bno=${list.bno})}">
+                                    <h2 th:text="${list.bwriter}"></h2>
+                                    <div class="content">
+                                        <p th:text="${list.btitle}"></p>
+                                    </div>
+                                </a>
+                            </article>
+                        </th:block>
+                    </th:block>
+                </section>
+
+                <br>
+                <section style="float: right;">
+                    <input type="button" value="Write" class="primary" onclick="location.href='/board/write'"/>
+                </section>
+            </div>
+        </div>
+    </th:block>
+    </body>
+</th:block>
+</html>
