@@ -1,8 +1,11 @@
 package com.example.homepage.controller;
 
 import com.example.homepage.dto.BoardDTO;
+import com.example.homepage.dto.MemberDTO;
 import com.example.homepage.service.BoardService;
+import jdk.swing.interop.SwingInterOpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,16 +18,17 @@ public class BoardController {
     @Autowired
     BoardService boardService;
 
-    @GetMapping("/list")
-    public void list(Model model) {
+    @RequestMapping("/list")
+    public void list(Model model, @ModelAttribute BoardDTO boardDTO, @AuthenticationPrincipal MemberDTO memberDTO) {
         List<BoardDTO> lists = boardService.getList();
 
         model.addAttribute("lists", lists);
+        model.addAttribute("member", memberDTO);
     }
 
     @GetMapping("/write")
-    public void write(){
-
+    public void write(Model model, @AuthenticationPrincipal MemberDTO memberDTO){
+        model.addAttribute("member", memberDTO);
     }
 
     @PostMapping("/write")
@@ -32,13 +36,15 @@ public class BoardController {
         boolean result = boardService.insertPost(boardDTO);
 
         if (result) {
+            System.out.println("success");
             return "redirect:list";
         }
+        System.out.println("fail");
         return "redirect:write";
     }
 
     @RequestMapping("/post")
-    public void selectOne(@RequestParam("bno") int bno, Model model){
+    public void selectOne(@RequestParam("bno") int bno, Model model, @AuthenticationPrincipal MemberDTO memberDTO){
         System.out.println("bno : " + bno);
         BoardDTO boardDTO = boardService.selectOnePost(bno);
         if(boardDTO == null){
@@ -49,6 +55,7 @@ public class BoardController {
         }
 
         model.addAttribute("post", boardDTO);
+        model.addAttribute("member", memberDTO);
     }
 
     @RequestMapping("/delete")

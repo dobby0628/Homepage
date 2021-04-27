@@ -17,7 +17,7 @@
                                 <input type="text" name="btitle" id="btitle" value="" placeholder="Title" />
                             </div>
                             <div class="col-3 col-12-xsmall">
-                                <input type="text" name="bwriter" id="bwriter" value="" placeholder="Writer" text="" />
+                                <input type="text" name="bwriter" id="bwriter" th:value="${member.musername}" />
                             </div>
                             <div class="col-12">
                                 <textarea name="bcontent" id="bcontent" placeholder="Enter your message" rows="6"></textarea>

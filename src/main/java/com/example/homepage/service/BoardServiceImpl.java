@@ -18,7 +18,7 @@ public class BoardServiceImpl implements BoardService {
     BoardRepository boardRepository;
 
     @Override
-    public List<BoardDTO>  getList() {
+    public List<BoardDTO> getList() {
         List<BoardEntity> result = boardRepository.findAllByOrderByBnoDesc();
 
         List<BoardDTO> list = result.stream().map(

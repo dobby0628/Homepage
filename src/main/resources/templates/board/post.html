@@ -7,14 +7,13 @@
         <div id="main">
             <div class="inner">
                 <header>
-                    <h1>Board</h1>
+                    <h1>[[${{post.btitle}}]]</h1>
                 </header>
                 <section>
-                    <h2>[[${{post.btitle}}]]</h2>
+                    <br><br>
+                    <h3>작성자</h3> <p>[[${post.bwriter}]]</p>
                     <br>
-                    <h3>Writer</h3> <p>[[${post.bwriter}]]</p>
-                    <br>
-                    <h3>CreateTime</h3> <p>[[${post.regdate}]]</p>
+                    <h3>작성한 날짜</h3> <p>[[${post.regdate}]]</p>
                     <br>
                     <h3>수정한 날짜</h3> <p>[[${post.moddate}]]</p>
                     <br>
@@ -23,7 +22,7 @@
                     <blockquote>[[${post.bcontent}]]</blockquote>
 
                     <br>
-                    <ul class="actions" style="float: right;">
+                    <ul class="actions" style="float: right;" th:if="${member}">
                         <li><a th:href="@{/board/update(bno=${post.bno})}" class="button primary" />Update</a></li>
                         <li><a th:href="@{/board/delete(bno=${post.bno})}" class="button primary" />Delete</a></li>
                     </ul>

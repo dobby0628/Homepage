@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
     <body class="is-preload">
     <th:block th:fragment="content">
@@ -8,30 +9,35 @@
             <div class="inner">
                 <header>
                     <h1>Board</h1>
-                    <p>please write about your story</p>
-                </header>
-                <section class="tiles">
-                    <th:block th:if="${lists}">
-                        <th:block th:each="list : ${lists}">
-                            <article class="style1">
-                                <span class="image">
-                                    <img th:src="|/images/pic0${list.bno}.jpg|" alt="" />
-                                </span>
-                                <a th:href="@{/board/post(bno=${list.bno})}">
-                                    <h2 th:text="${list.bwriter}"></h2>
-                                    <div class="content">
-                                        <p th:text="${list.btitle}"></p>
-                                    </div>
-                                </a>
-                            </article>
-                        </th:block>
+                    <th:block th:if="${member}">
+                        <p>[[${member.musername}]]님</p>
                     </th:block>
+                </header>
+
+                <section class="tiles">
+                    <article class="style1">
+                        <th:block th:each="list : ${lists}">
+                            <span class="image">
+                                <img src="/images/pic01.jpg" alt="" />
+                            </span>
+                            <a th:href="@{/board/post(bno=${list.bno})}">
+                                <h2 th:text="${list.bwriter}"></h2>
+                                <div class="content">
+                                    <p th:text="${list.btitle}"></p>
+                                </div>
+                            </a>
+                        </th:block>
+                    </article>
                 </section>
 
                 <br>
-                <section style="float: right;">
-                    <input type="button" value="Write" class="primary" onclick="location.href='/board/write'"/>
-                </section>
+                <th:block th:if="${member}">
+                    <section style="float: right;">
+                        <form action="/board/write">
+                            <input type="submit" value="Write" class="primary"/>
+                        </form>
+                    </section>
+                </th:block>
             </div>
         </div>
     </th:block>

@@ -4,20 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/")
 public class MainController {
 
-    @RequestMapping("/index")
-    public void main(){
-
-    }
-
-    @RequestMapping("/generic")
-    public void generic(){
-
-    }
-
-    @RequestMapping("/elements")
-    public void elements(){
-
+    @RequestMapping("/")
+    public String main(){
+        return "redirect:/board/list";
     }
 }
